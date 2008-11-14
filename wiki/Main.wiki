@@ -1,0 +1,26 @@
+#labels Featured
+Most users looking through this site will be looing for a way to download records from pH1000s.
+
+= Introduction =
+
+A few methods for record downloading are available for various computer platforms.
+
+
+= Details =
+Methods to perform the various tasks are described here.
+
+== Windows ==
+
+  * [Get records from pH1000 by ethernet connection PCbyethernet]
+  * [Email records to an interested party PCemail]
+  * [Setup windows Scheduled Tasks to perform the above functions automatically PCtasks]
+
+
+== Unix/Linux ==
+
+In development.
+
+
+== Mac ==
+
+In development.
