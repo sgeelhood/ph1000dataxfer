@@ -11,9 +11,9 @@ Methods to perform the various tasks are described here.
 
 == Windows ==
 
-  * [Get records from pH1000 by ethernet connection PCbyethernet]
-  * [Email records to an interested party PCemail]
-  * [Setup windows Scheduled Tasks to perform the above functions automatically PCtasks]
+  * [PCbyethernet Get records from pH1000 by ethernet connection]
+  * [PCemail Email records to an interested party]
+  * [PCautotasks Setup windows Scheduled Tasks to perform the above functions automatically]
 
 
 == Unix/Linux ==
