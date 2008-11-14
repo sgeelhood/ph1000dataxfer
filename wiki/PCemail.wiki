@@ -3,7 +3,7 @@ A method of collating records and sending them to a new location is described he
 
 = Introduction =
 
-Once a series of records has been saved to a PC it may be useful to have the records emailed or FTPed to a different location.
+Once a series of records has been saved to a PC described in [PCbyethernet] it may be useful to have the records emailed or FTPed to a different location.
 
 
 = Details =
