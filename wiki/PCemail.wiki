@@ -1,4 +1,3 @@
-#labels Featured
 A method of collating records and sending them to a new location is described here.
 
 = Introduction =
