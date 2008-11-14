@@ -1,0 +1,19 @@
+The method for getting pH1000 data onto a PC by ethernet connection is described here.
+
+= Introduction =
+
+The BCSI pH1000 v3.4 system is designed to allow a PC to log onto the instrument by FTP and download a "test_info" file.  This is described in Appendix C of the users manual.  BCSI does not provide software solutions for users to get data off the pH1000 as this is a very customized and specific activity for users's LIS systems.  One method of collecting data using batch files is described here.
+
+
+= Details =
+
+There are a few steps that need to be done and most of these commands can be handled with batch files, which execute a series of command line actions.
+
+  * FTP into pH1000 and download test records
+  * Make a time stamp to append to file name
+  * Define the pH1000 serial number
+  * Add UnitSN and date stamp to the file
+  * Rename the file
+  * Check for new records else delete file
+
+Use the *pH1000_ftp.bat* and *pH1000_ftp.scr* files to automatically perform these tasks.  The IP address in the pH1000_ftp.bat file will need to be edited for the specific pH1000 used.
