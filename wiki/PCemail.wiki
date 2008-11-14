@@ -1,0 +1,20 @@
+#labels Featured
+A method of collating records and sending them to a new location is described here.
+
+= Introduction =
+
+Once a series of records has been saved to a PC it may be useful to have the records emailed or FTPed to a different location.
+
+
+= Details =
+
+There are a few steps that need to be done and most of these commands can be handled with batch files, which execute a series of command line actions.
+
+  * Define a location description
+  * Move all the current csv files to be emailed into a temporary directory
+  * Define a timestamp
+  * Concatentate the files
+  * Call blat to email the concatenated file
+  * Move the files to an archive location
+
+Use the *pH1000_email.bat* and *settings.txt* files to automatically perform these tasks. These should be placed in the same folder as the ph1000_ftp.bat file except that the settings.txt file should be placed in a /blat sub folder.  The location description in pH1000_email.bat file should be edited for the specific location (ie Distribution_Center_1).  The email information in settings.txt for log in and email address to send to should be edited.  The blat program can be downloaded from http://www.blat.net/
