@@ -1,4 +1,6 @@
+#summary Main description page for the program
 #labels Featured
+
 Most users looking through this site will be looing for a way to download records from pH1000s.
 
 = Introduction =
@@ -8,6 +10,8 @@ A few methods for record downloading are available for various computer platform
 
 = Details =
 Methods to perform the various tasks are described here.
+
+http://ph1000dataxfer.googlecode.com/files/dataxfer.jpg
 
 == Windows ==
 
