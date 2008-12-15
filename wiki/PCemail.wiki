@@ -13,6 +13,7 @@ There are a few steps that need to be done and most of these commands can be han
   * Move all the current csv files to be emailed into a temporary directory
   * Define a timestamp
   * Concatentate the files
+  * Search and replace , with ; in file (needed for EU location settings)
   * Call blat to email the concatenated file
   * Move the files to an archive location
 
