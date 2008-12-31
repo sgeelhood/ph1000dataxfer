@@ -22,7 +22,9 @@ http://ph1000dataxfer.googlecode.com/files/dataxfer.jpg
 
 == Unix/Linux ==
 
-In development.
+  * [Linuxbyethernet Get records from pH1000 by ethernet connection]
+  * [Linuxemail Email records to an interested party]
+  * [LinuxCrontab Setup Scheduled Tasks in crontab to perform the functions automatically]
 
 
 == Mac ==
