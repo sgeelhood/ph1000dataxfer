@@ -1,0 +1,25 @@
+# Introduction #
+
+Once we have the FTP data downloading from pH1000s and optional emailing of files to a different location figured out it is useful to automatically call the tasks. In order for this feature to work, the computer must remain on during the time frame that it is expected to be pulling records from the pH1000.
+
+# Details #
+
+Two lines should be added to the crontab file in Linux.  Edit the file with the following command
+```
+crontab -e
+```
+
+  * A line to call the pH1000\_ftp.sh file once every 10 minutes during business hours. (0600 to 2100 Monday to Saturday)
+
+```
+# MIN   HOUR   MDAY  MON  DOW   COMMAND 
+*/10 6-21 * * 1-6 pH1000_ftp.sh
+```
+
+
+  * A line to call the pH1000\_email.sh file on Monday morning.
+
+```
+# MIN   HOUR   MDAY  MON  DOW   COMMAND 
+30 5 * * 1 pH1000_email.sh
+```

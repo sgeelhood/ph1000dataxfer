@@ -1,0 +1,52 @@
+A method of collating records and sending them to a new location is described here.
+
+# Introduction #
+
+Once a series of records has been saved to a PC described in [PCbyethernet](PCbyethernet.md) it may be useful to have the records emailed or FTPed to a different location.
+
+
+# Details #
+
+There are a few steps that need to be done and most of these commands can be handled with batch files, which execute a series of command line actions.
+
+  * Define a location description
+```
+set location=mylocation
+```
+  * Move all the current csv files to be emailed into a temporary directory
+```
+move *.csv blat
+```
+  * Define a timestamp
+```
+set hh=%time:~0,2%
+if "%time:~0,1%"==" " set hh=0%hh:~1,1%
+FOR %%A IN (%Date%) DO (
+    FOR /F "tokens=1-3 delims=/-" %%B in ("%%~A") DO (
+        SET yyyymmdd=%%D%%B%%C
+    )
+)
+set yyyymmdd_hhmmss=%yyyymmdd%_%hh%%time:~3,2%%time:~6,2%
+```
+  * Concatentate the files
+```
+cd blat
+copy /a *.csv /a temp.txt
+del *.csv
+echo b,,,,,%location%,%yyyymmdd_hhmmss% >> temp.txt
+rename temp.txt %location%_%yyyymmdd_hhmmss%.csv
+```
+  * Search and replace , with ; in file (needed for EU location settings)
+```
+gsar -s, -r; -o *.csv
+```
+  * Call blat to email the concatenated file
+```
+Blat -body "BCSI pH1000 records from %location%||Enjoy!" -s "%location% BCSI pH1000 data" -of settings.txt -attacht %location%_%yyyymmdd_hhmmss%.csv
+```
+  * Move the files to an archive location
+```
+move %location%_%yyyymmdd_hhmmss%.csv ../archive
+```
+
+All of the above commands are captured in the **pH1000\_email.bat** and **settings.txt** files, and can be used to automatically perform these tasks. These should be placed in the same folder as the ph1000\_ftp.bat file except that the settings.txt file should be placed in a /blat sub folder.  The location description in pH1000\_email.bat file should be edited for the specific location (ie Distribution\_Center\_1).  The email information in settings.txt for log in and email address to send to should be edited.  The blat program can be downloaded from http://www.blat.net/.  The search and replace program can be downloaded from http://gnuwin32.sourceforge.net/packages/gsar.htm.  Both executable files should be placed in the blat sub directory.
