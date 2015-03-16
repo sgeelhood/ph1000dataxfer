@@ -1,0 +1,6 @@
+user
+anonymous
+anon
+get README
+get test_info
+quit

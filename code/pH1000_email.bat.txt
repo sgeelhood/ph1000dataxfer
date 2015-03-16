@@ -1,0 +1,39 @@
+@echo off
+
+REM this file will email records from a PCs directory to a user
+REM email v0.02
+REM
+REM This code has not been validated/verified and is for demo use only.
+REM Not intended for use in a clinical setting.
+
+REM Define a location description
+set location=mylocation
+
+REM move all the current *.csv files to be emailed into a temporary directory
+move *.csv blat
+
+REM Define a time stamp
+set hh=%time:~0,2%
+if "%time:~0,1%"==" " set hh=0%hh:~1,1%
+FOR %%A IN (%Date%) DO (
+    FOR /F "tokens=1-3 delims=/-" %%B in ("%%~A") DO (
+        SET yyyymmdd=%%D%%B%%C
+    )
+)
+set yyyymmdd_hhmmss=%yyyymmdd%_%hh%%time:~3,2%%time:~6,2%
+
+REM Concatentate the files
+cd blat
+copy /a *.csv /a temp.txt
+del *.csv
+echo b,,,,,%location%,%yyyymmdd_hhmmss% >> temp.txt
+rename temp.txt %location%_%yyyymmdd_hhmmss%.csv
+
+REM Search and replace , with ; in file
+gsar -s, -r; -o *.csv
+
+REM call blat to email the concatenated file
+Blat -body "BCSI pH1000 records from %location%||Enjoy!" -s "%location% BCSI pH1000 data" -of settings.txt -attacht %location%_%yyyymmdd_hhmmss%.csv
+
+REM move the files to an archive location
+move %location%_%yyyymmdd_hhmmss%.csv ../archive

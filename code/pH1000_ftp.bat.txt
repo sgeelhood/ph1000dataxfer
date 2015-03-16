@@ -1,0 +1,37 @@
+@echo off
+
+REM This file will access the pH1000 and store records on a PC
+REM pH1000 v0.04
+REM
+REM This code has not been validated/verified and is for demo use only.
+REM Not intended for use in a clinical setting.
+
+
+REM ftp into pH1000 and download test records (change IP address below for the pH1000 desired)
+ftp -n -s:pH1000_ftp.scr 192.168.1.100
+
+
+REM Make a time stamp to append to file name
+set hh=%time:~0,2%
+if "%time:~0,1%"==" " set hh=0%hh:~1,1%
+FOR %%A IN (%Date%) DO (
+    FOR /F "tokens=1-3 delims=/-" %%B in ("%%~A") DO (
+        SET yyyymmdd=%%D%%B%%C
+    )
+)
+set yyyymmdd_hhmmss=%yyyymmdd%_%hh%%time:~3,2%%time:~6,2%
+
+
+REM Define the pH1000 serial number
+for /F "tokens=2,3,* delims=#" %%i IN ('findstr /V "BCSI pH1000" README') do call set unitsn=%%i
+del README
+
+REM Add UnitSN and date stamp to the file
+echo a,,,,,%unitsn%,%yyyymmdd_hhmmss% >> test_info
+
+REM Rename the file
+rename test_info test_%unitsn%_%yyyymmdd_hhmmss%.csv
+
+REM Check for new records else delete file (Remove the REM at begining of next two lines to activate function)
+for /F %%i IN ('findstr "NO RECORDS AVAILABLE" test_%unitsn%_%yyyymmdd_hhmmss%.csv') do call set cont=%%i
+if %cont%==NO del test_%unitsn%_%yyyymmdd_hhmmss%.csv

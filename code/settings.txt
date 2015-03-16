@@ -1,0 +1,1 @@
+-f from@server.com -to to@domain.com -server mail.server.com -u from@server.com -pw password -log blat_log.txt -try 3
